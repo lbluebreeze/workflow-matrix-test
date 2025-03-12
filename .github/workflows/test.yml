@@ -23,7 +23,7 @@ jobs:
       matrix:
         destinations: [ST, PD]
         countries: [COL, MEX]
-    environment: app-${{ matrix.countries }} ${{ matrix.countries }}
+    environment: app-${{ matrix.destinations }}-${{ matrix.countries }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
