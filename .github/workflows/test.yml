@@ -19,5 +19,5 @@ jobs:
   build-and-publish-ST-COL:
     uses: ./.github/workflows/build-and-publish.yaml
     with:
-      environment: ST
+      environment: PD
       country: COL
