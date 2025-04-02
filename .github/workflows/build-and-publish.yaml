@@ -19,12 +19,9 @@ jobs:
       - name: Building ${{ inputs.environment }} ${{ inputs.country }} artifact
         run: |
           echo "${{ runner.os }} pnpm nx affected -t build --mode=${{ inputs.environment }}${{ inputs.country }}"
-          echo $VITE_CLIENT_ID | sed 's/./& /g'
-          echo ${{ secrets.GITHUB_TOKEN }} | sed 's/./& /g'
-          echo $VITE_PORT
+          echo $VITE_CLIENT_ID
         env:
           VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
-          VITE_PORT: 4170
       - name: Count Artifacts for Processing
         id: count-artifact-processing
         run: |
