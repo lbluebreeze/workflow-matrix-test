@@ -17,7 +17,9 @@ jobs:
       CDN_ARTIFACTS: ${{ steps.count-artifact-processing.outputs.COUNT }}
     steps:
       - name: Building ${{ inputs.environment }} ${{ inputs.country }} artifact
-        run: echo "${{ runner.os }} pnpm nx affected -t build --mode=${{ inputs.environment }}${{ inputs.country }} secret $VITE_CLIENT_ID"
+        run: |
+          echo "${{ runner.os }} pnpm nx affected -t build --mode=${{ inputs.environment }}${{ inputs.country }}"
+          echo $VITE_CLIENT_ID
         env:
           VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
       - name: Count Artifacts for Processing
@@ -28,7 +30,7 @@ jobs:
 
   publish:
     if: ${{ needs.build.outputs.CDN_ARTIFACTS > 0 }}
-    runs-on: runner-siigo
+    runs-on: ubuntu-latest
     name: Deploy all content to CDN
     needs: [build]
     steps:
