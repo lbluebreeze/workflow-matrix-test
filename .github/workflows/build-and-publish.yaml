@@ -1,0 +1,35 @@
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      country:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build ${{ inputs.environment }} ${{ inputs.country }}
+    outputs:
+      CDN_ARTIFACTS: ${{ steps.count-artifact-processing.outputs.COUNT }}
+    steps:
+      - name: Building ${{ inputs.environment }} ${{ inputs.country }} artifact
+        run: echo "${{ runner.os }} pnpm nx affected -t build --mode=${{ inputs.environment }}${{ inputs.country }} secret $VITE_CLIENT_ID"
+        env:
+          VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
+      - name: Count Artifacts for Processing
+        id: count-artifact-processing
+        run: |
+          COUNT=1
+          echo "COUNT=$COUNT" >> $GITHUB_OUTPUT
+
+  publish:
+    if: ${{ needs.build.outputs.CDN_ARTIFACTS > 0 }}
+    runs-on: runner-siigo
+    name: Deploy all content to CDN
+    needs: [build]
+    steps:
+      - name: Upload each path to S3
+        run: echo "upload successful"
