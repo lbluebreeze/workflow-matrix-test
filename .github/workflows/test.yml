@@ -21,5 +21,3 @@ jobs:
     with:
       environment: ST
       country: COL
-    secrets:
-      VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
