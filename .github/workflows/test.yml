@@ -8,9 +8,8 @@ on:
 
 jobs:
   build-and-publish-ST-COL:
-    secrets: inherit
     uses: ./.github/workflows/build-and-publish.yaml
     with:
       environment: ST
       country: COL
-        
+    secrets: inherit
