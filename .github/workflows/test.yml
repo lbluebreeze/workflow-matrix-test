@@ -17,7 +17,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build-and-publish-ST-COL:
-    uses: ./.github/workflows/build-and-publish
+    uses: ./.github/workflows/build-and-publish.yaml
     with:
       environment: ST
       country: COL
