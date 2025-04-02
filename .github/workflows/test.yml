@@ -16,10 +16,10 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build-and-publish-qa-COL:
+  build-and-publish-ST-COL:
     uses: ./.github/workflows/build-and-publish
     with:
-      environment: qa
+      environment: ST
       country: COL
     secrets:
       VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
