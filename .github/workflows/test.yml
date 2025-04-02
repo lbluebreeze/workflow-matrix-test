@@ -22,4 +22,4 @@ jobs:
       environment: qa
       country: COL
     secrets:
-      VITE_CLIENT_ID: 1234
+      VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
