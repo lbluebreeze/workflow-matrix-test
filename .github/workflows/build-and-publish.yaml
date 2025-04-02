@@ -7,12 +7,14 @@ on:
       country:
         required: true
         type: string
+    secrets:
+      VITE_CLIENT_ID:
+        required: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     name: Build ${{ inputs.environment }} ${{ inputs.country }}
-    environment: app-${{ inputs.environment }}-${{ inputs.country }}
     outputs:
       CDN_ARTIFACTS: ${{ steps.count-artifact-processing.outputs.COUNT }}
     steps:
