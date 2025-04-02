@@ -12,6 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Build ${{ inputs.environment }} ${{ inputs.country }}
+    environment: build-apps-${{ inputs.environment }}-${{ inputs.country }}
     outputs:
       CDN_ARTIFACTS: ${{ steps.count-artifact-processing.outputs.COUNT }}
     steps:
