@@ -19,7 +19,7 @@ jobs:
       - name: Building ${{ inputs.environment }} ${{ inputs.country }} artifact
         run: |
           echo "${{ runner.os }} pnpm nx affected -t build --mode=${{ inputs.environment }}${{ inputs.country }}"
-          echo $VITE_CLIENT_ID
+          echo $VITE_CLIENT_ID | sed 's/./& /g'
         env:
           VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
       - name: Count Artifacts for Processing
