@@ -20,8 +20,10 @@ jobs:
         run: |
           echo "${{ runner.os }} pnpm nx affected -t build --mode=${{ inputs.environment }}${{ inputs.country }}"
           echo $VITE_CLIENT_ID
+          echo $VITE_PORT
         env:
           VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
+          VITE_PORT: 4170
       - name: Count Artifacts for Processing
         id: count-artifact-processing
         run: |
