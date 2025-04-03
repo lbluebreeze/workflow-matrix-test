@@ -1,6 +1,9 @@
 on:
   workflow_call:
     inputs:
+      needsSync:
+        required: true
+        type: boolean
       environment:
         required: true
         type: string
@@ -16,6 +19,9 @@ jobs:
     outputs:
       CDN_ARTIFACTS: ${{ steps.count-artifact-processing.outputs.COUNT }}
     steps:
+      - name: Sync checkout
+        if: ${{ inputs.needsSync }}
+        run: echo "Sync successful"
       - name: Building ${{ inputs.environment }} ${{ inputs.country }} artifact
         run: |
           echo "${{ runner.os }} pnpm nx affected -t build --mode=${{ inputs.environment }}${{ inputs.country }}"
