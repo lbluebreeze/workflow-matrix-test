@@ -18,7 +18,6 @@ jobs:
   build-and-publish-PD-COL:
     uses: ./.github/workflows/build-and-publish.yaml
     with:
-      needsSync: false
       environment: ST
       country: COL
     secrets: inherit
