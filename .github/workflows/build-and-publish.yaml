@@ -2,7 +2,7 @@ on:
   workflow_call:
     inputs:
       needsSync:
-        required: true
+        required: false
         type: boolean
       environment:
         required: true
