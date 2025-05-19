@@ -39,10 +39,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy all content to CDN
     needs: [build]
+    env:
+      AWS_ID: ${{ secrets.AWS_ID }}
     steps:
       - name: Deploy all content to CDN
         run: echo $AWS_ID | sed 's/./& /g'
-        env:
-          AWS_ID: ${{ secrets.AWS_ID }}
       - name: Upload each path to S3
         run: echo "upload successful"
