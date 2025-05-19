@@ -37,6 +37,7 @@ jobs:
   publish:
     if: ${{ needs.build.outputs.CDN_ARTIFACTS > 0 }}
     runs-on: ubuntu-latest
+    environment: app-${{ inputs.environment }}-${{ inputs.country }}
     name: Deploy all content to CDN
     needs: [build]
     env:
